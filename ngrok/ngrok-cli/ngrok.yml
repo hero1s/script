@@ -1,0 +1,11 @@
+server_addr: cherrytest.bgcio.com:9920
+trust_host_root_certs: false
+tunnels:
+  web1:
+    subdomain: "git"
+    proto:
+      http: 127.0.0.1:9997
+  web2:
+    subdomain: "jenkins"
+    proto:
+      http: 127.0.0.1:9999
