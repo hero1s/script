@@ -1,0 +1,16 @@
+#edu mysql
+docker run -d --name mysql-edu --restart always -p 8308:3306 -v /data/db/edu:/var/lib/mysql -v /data/db/conf.d:/etc/mysql/conf.d  -e MYSQL_ROOT_PASSWORD='Cherry@)!(2020' mysql:5.7
+
+#audit mysql
+docker run -d --name mysql-audit --restart always -p 8309:3306 -v /data/db/audit:/var/lib/mysql -v /data/db/conf.d:/etc/mysql/conf.d  -e MYSQL_ROOT_PASSWORD='Cherry@)!(2020' mysql:5.7
+
+# audit redis
+docker run -d --name redis-audit --restart always -v /data/db/redis-audit:/data -p 8379:6379  redis:alpine redis-server --appendonly yes --requirepass "e2345"
+
+#audit-td mysql
+docker run -d --name mysql-audit-td --restart always -p 8406:3306 -v /data/db/audit-td:/var/lib/mysql -v /data/db/conf.d:/etc/mysql/conf.d  -e MYSQL_ROOT_PASSWORD='Cherry@)!(2020' mysql:5.7
+
+# audit-td redis
+docker run -d --name redis-audit-td --restart always -v /data/db/redis-audit-td:/data -p 8479:6379  redis:alpine redis-server --appendonly yes --requirepass "e2345"
+
+docker start/stop/restart mysql-edu
