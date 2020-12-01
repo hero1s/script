@@ -20,3 +20,11 @@ echo "Installing..."
 sudo tar -C /usr/local -xzf ${filename}
 echo "Done"
 
+
+vim /etc/profile
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export GOPROXY=https://goproxy.cn,direct
+source /etc/profile
+go env
