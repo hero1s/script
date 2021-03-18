@@ -1,7 +1,13 @@
 #!/bin/sh
+set -xe
 
 db_user="root"
 db_passwd="e23456"
+
+#备份
+datetag=`date '+%Y-%m-%d-%H:%M:%S'`
+mkdir ${datetag}
+cd  ${datetag}
 
 # 保存数据库结构
 all_dbs=("cherry" "cherry_config" "cherry_log" "cherry_backend")
@@ -20,3 +26,4 @@ do
 done
 
 
+30 21 * * * ./backup_mysqlstruct.sh
