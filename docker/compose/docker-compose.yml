@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  mongo1:
+    image: mongo:4.0
+    container_name: "mongo1"
+    restart: always
+    tty: true
+    ports:
+      - "27018:27017"
+    #command: "mongod --auth"
+    volumes:
+      - './mongo:/data/db'
+  mongo2:
+    image: mongo:4.0
+    container_name: "mongo2"
+    restart: always
+    tty: true
+    ports:
+      - "27017:27017"
+    #command: "mongod --auth"
+    volumes:
+      - './mongo2:/data/db'
+  redis1:
+    image: redislabs/rebloom
+    container_name: redis1
+    hostname: redis
+    restart: always
+    ports:
+      - 6377:6379
+    volumes:
+      - ./conf/redis.conf:/etc/redis/redis.conf
+      - ./data:/data:rw
+    command:
+      redis-server /etc/redis/redis.conf --appendonly yes
+  redis2:
+    image: redislabs/rebloom
+    container_name: redis2
+    hostname: redis
+    restart: always
+    ports:
+      - 6378:6379
+    volumes:
+      - ./conf/redis.conf:/etc/redis/redis.conf
+      - ./data2:/data:rw
+    command:
+      redis-server /etc/redis/redis.conf --appendonly yes
