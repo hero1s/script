@@ -4,6 +4,7 @@
 * 编译：
   * go build -buildmode=c-shared -o libtest.so main.go
   * go build -buildmode=c-archive -o libtest.a main.go
+  * readelf -a libtest.so | grep -i gofunc
 * 使用：
   * gcc ./test.c -o testgo -L ./ -ltest
 
